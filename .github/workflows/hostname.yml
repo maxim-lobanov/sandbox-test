@@ -18,13 +18,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: |
-          $netip = Get-NetIPAddress | Where-Object { $_.InterfaceAlias.StartsWith("Ethernet") -and $_.AddressFamily -eq "IPv4" }
-          $client = Get-DnsClient | Where-Object { $_.ConnectionSpecificSuffix }
-          $hostname = hostname
-          $suffix = $client.ConnectionSpecificSuffix
-          "`r`n$($netip.IPAddress) $hostname.$suffix $hostname" | Add-Content -Path  "$($env:windir)\system32\Drivers\etc\hosts" -Encoding ascii
-        shell: pwsh
+      #- run: |
+      #    $netip = Get-NetIPAddress | Where-Object { $_.InterfaceAlias.StartsWith("Ethernet") -and $_.AddressFamily -eq "IPv4" }
+      #    $client = Get-DnsClient | Where-Object { $_.ConnectionSpecificSuffix }
+      #    $hostname = hostname
+      #    $suffix = $client.ConnectionSpecificSuffix
+      #    "`r`n$($netip.IPAddress) $hostname.$suffix $hostname" | Add-Content -Path  "$($env:windir)\system32\Drivers\etc\hosts" -Encoding ascii
+      #  shell: pwsh
 
       - name: Set up Python
         uses: actions/setup-python@v4
