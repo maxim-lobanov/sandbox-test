@@ -69,7 +69,8 @@ jobs:
           echo "Pinging hostname..."
           ping -n 1 $env:COMPUTERNAME
           echo "Pinging FQDN..."
-          ping -n 1 [System.Net.Dns]::GetHostEntry([System.Net.Dns]::GetHostName()).HostName
+          $hostName = [System.Net.Dns]::GetHostEntry([System.Net.Dns]::GetHostName()).HostName
+          ping -n 1 $hostName
         shell: pwsh
         if: runner.os == 'Windows' && always()
 
